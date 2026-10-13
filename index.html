@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buku Keuangan Harian</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>📒 Buku Keuangan Harian</h1>
+    <p>Catat uang masuk, kendalikan pengeluaran, rencanakan masa depan.</p>
+</header>
+
+<main>
+    <div class="cards">
+        <div class="card">
+            <span>Saldo Saat Ini</span>
+            <h2 id="balance">Rp0</h2>
+        </div>
+        <div class="card">
+            <span>Total Pemasukan Bulan Ini</span>
+            <h2 class="income" id="income">Rp0</h2>
+        </div>
+        <div class="card">
+            <span>Total Pengeluaran Bulan Ini</span>
+            <h2 class="expense" id="expense">Rp0</h2>
+        </div>
+    </div>
+
+    <div class="layout">
+        <section class="panel">
+            <h3 id="formTitle">Tambah Transaksi</h3>
+
+            <form id="transactionForm">
+                <label for="date">Tanggal</label>
+                <input type="date" id="date" required>
+
+                <label for="type">Jenis Transaksi</label>
+                <select id="type" required>
+                    <option value="masuk">Pemasukan (+)</option>
+                    <option value="keluar">Pengeluaran (-)</option>
+                </select>
+
+                <label for="category">Kategori</label>
+                <select id="category" required></select>
+
+                <label for="description">Keterangan</label>
+                <input id="description" maxlength="100"
+                       placeholder="Contoh: makan siang" required>
+
+                <label for="amount">Nominal (Rp)</label>
+                <input id="amount" type="number" min="1" step="1"
+                       placeholder="Contoh: 25000" required>
+
+                <div class="actions">
+                    <button class="primary" type="submit" id="saveButton">
+                        Simpan Transaksi
+                    </button>
+                    <button type="button" id="cancelEdit" hidden>
+                        Batal
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="panel">
+            <h3>Riwayat Transaksi</h3>
+
+            <div class="toolbar">
+                <input type="month" id="filterMonth"
+                       aria-label="Filter bulan">
+                <button type="button" id="exportButton" class="primary">
+                    Ekspor CSV
+                </button>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Transaksi</th>
+                            <th>Kategori</th>
+                            <th>Nominal</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionList"></tbody>
+                </table>
+            </div>
+
+            <p id="transactionCount" class="muted"></p>
+        </section>
+    </div>
+
+    <div class="report">
+        <div class="card">
+            <span>Jumlah Transaksi Bulan Ini</span>
+            <h2 id="count">0 transaksi</h2>
+        </div>
+        <div class="card">
+            <span>Selisih Pemasukan dan Pengeluaran</span>
+            <h2 id="net">Rp0</h2>
+        </div>
+    </div>
+</main>
+
+<footer>
+    Buku Keuangan Harian · Data tersimpan di browser perangkat ini.
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
